@@ -1,21 +1,20 @@
-import { useState } from 'react'
-
-const tracks = [
-  {
-    id: 1,
-    title: 'MusicFun Soundtrack',
-    url: 'https://musicfun.it-incubator.app/api/samurai-way-soundtrack.mp3',
-  },
-
-  {
-    id: 2,
-    title: 'MusicFun Soundtrack – Instrumental',
-    url: 'https://musicfun.it-incubator.app/api/samurai-way-soundtrack-instrumental.mp3',
-  },
-]
+import { useEffect, useState } from 'react'
+import type { TrackListItemResource } from './types'
 
 export const App = () => {
-  const [selectedTrackId, setSelectedTrackId] = useState<number | null>(null)
+  const API_KEY = import.meta.env.VITE_API_KEY
+
+  const [tracks, setTracks] = useState<TrackListItemResource[] | null>(null)
+  const [selectedTrackId, setSelectedTrackId] = useState<string | null>(null)
+
+  useEffect(() => {
+    fetch('https://musicfun.it-incubator.app/api/1.0/playlists/tracks', {
+      headers: {
+        'api-key': API_KEY,
+      },
+    }).then(res => res.json())
+      .then(json => setTracks(json.data))
+  }, [])
 
   return (
     <>
@@ -23,7 +22,7 @@ export const App = () => {
 
       {tracks === null && <p>Loading...</p>}
 
-      {tracks.length === 0 && <p>No tracks</p>}
+      {tracks?.length === 0 && <p>No tracks</p>}
 
       <button
         type="button"
@@ -32,15 +31,15 @@ export const App = () => {
       </button>
 
       <ul>
-        {tracks.map((track) => (
+        {tracks?.map((track) => (
           <li
             key={track.id}
             style={{ border: `1px solid ${track.id === selectedTrackId ? 'orange' : 'transparent'}` }}
             onClick={() => setSelectedTrackId(track.id)}
           >
-            <div>{track.title}</div>
+            <div>{track.attributes.title}</div>
             <audio
-              src={track.url}
+              src={track.attributes.attachments[0].url}
               controls
             ></audio>
           </li>
