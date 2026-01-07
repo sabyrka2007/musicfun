@@ -1,8 +1,8 @@
-export interface TrackAttachment {
+interface TrackAttachment {
   url: string
 }
 
-export interface TrackListItemAttributes {
+interface TrackListItemAttributes {
   title: string
   attachments: TrackAttachment[]
 }
@@ -10,4 +10,13 @@ export interface TrackListItemAttributes {
 export interface TrackListItemResource {
   id: string
   attributes: TrackListItemAttributes
+}
+
+interface TrackDetailsAttributes {
+  title: string
+  lyrics: string | null
+}
+
+export interface TrackDetailsResource {
+  attributes: TrackDetailsAttributes
 }
