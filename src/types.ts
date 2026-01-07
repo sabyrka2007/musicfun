@@ -18,5 +18,6 @@ interface TrackDetailsAttributes {
 }
 
 export interface TrackDetailsResource {
+  id: string
   attributes: TrackDetailsAttributes
 }

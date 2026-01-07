@@ -40,7 +40,10 @@ export const App = () => {
         <>
           <button
             type="button"
-            onClick={() => setSelectedTrackId(null)}
+            onClick={() => {
+              setSelectedTrack(null)
+              setSelectedTrackId(null)
+            }}
           >Reset selection
           </button>
 
@@ -62,16 +65,30 @@ export const App = () => {
             </ul>
             <div>
               <h2>Track details</h2>
-              {selectedTrackId === null ? <p>Track is not selected</p> : ''}
-              {selectedTrack && (
-                <div>
-                  <h3>{selectedTrack.attributes.title}</h3>
+
+              {selectedTrackId === null && <p>Track is not selected</p>}
+
+              {selectedTrackId !== null &&
+                (!selectedTrack || selectedTrack.id !== selectedTrackId) && (
+                  <p>Loading...</p>
+                )}
+
+              {selectedTrack &&
+                selectedTrackId !== null &&
+                selectedTrack.id === selectedTrackId && (
                   <div>
-                    <h4>Lyrics</h4>
-                    {selectedTrack.attributes.lyrics || <p>No lyrics</p>}
+                    <h3>{selectedTrack.attributes.title}</h3>
+
+                    <div>
+                      <h4>Lyrics</h4>
+                      {selectedTrack.attributes.lyrics ? (
+                        <p>{selectedTrack.attributes.lyrics}</p>
+                      ) : (
+                        <p>No lyrics</p>
+                      )}
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
             </div>
           </div>
         </>
