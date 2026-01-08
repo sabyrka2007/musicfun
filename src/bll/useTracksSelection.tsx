@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import type { TrackDetailsResource, TrackListItemResource } from '../types'
-import { getPlaylist, getTrack } from '../dal/api'
+import { getPlaylist, getTracks } from '../dal/api'
 
 export const useTracksSelection = () => {
   const [tracks, setTracks] = useState<TrackListItemResource[] | null>(null)
@@ -8,7 +8,7 @@ export const useTracksSelection = () => {
   const [selectedTrackId, setSelectedTrackId] = useState<string | null>(null)
 
   useEffect(() => {
-    getTrack().then(json => setTracks(json.data))
+    getTracks().then(json => setTracks(json.data))
   }, [])
 
   useEffect(() => {

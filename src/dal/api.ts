@@ -1,26 +1,33 @@
 import { API_KEY } from '../env'
-import type { TrackDetailsResource, TrackListItemResource } from '../types'
+import type {
+  TrackDetailsResource,
+  TrackListItemResource,
+} from '../types'
 
-export const getTrack = () => {
-  const promise: Promise<{
-    data: TrackListItemResource[]
-  }> = fetch('https://musicfun.it-incubator.app/api/1.0/playlists/tracks', {
-    headers: {
-      'api-key': API_KEY,
-    },
-  }).then(res => res.json())
+const BASE_URL = 'https://musicfun.it-incubator.app/api/1.0'
 
-  return promise
+export const getTracks = async (): Promise<{
+  data: TrackListItemResource[]
+}> => {
+  const res = await fetch(
+    `${BASE_URL}/playlists/tracks?apiKey=${API_KEY}`,
+  )
+  if (!res.ok) {
+    throw new Error(`Failed to load tracks: ${res.status}`)
+  }
+  return await res.json()
 }
 
-export const getPlaylist = (trackId: string) => {
-  const promise: Promise<{
-    data: TrackDetailsResource
-  }> = fetch(`https://musicfun.it-incubator.app/api/1.0/playlists/tracks/${trackId}`, {
-    headers: {
-      'api-key': API_KEY,
-    },
-  }).then(res => res.json())
-
-  return promise
+export const getPlaylist = async (
+  trackId: string,
+): Promise<{
+  data: TrackDetailsResource
+}> => {
+  const res = await fetch(
+    `${BASE_URL}/playlists/tracks/${trackId}?apiKey=${API_KEY}`,
+  )
+  if (!res.ok) {
+    throw new Error(`Failed to load playlist: ${res.status}`)
+  }
+  return await res.json()
 }
