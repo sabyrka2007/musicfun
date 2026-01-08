@@ -1,5 +1,5 @@
 import { Track } from '../Track'
-import type { TrackListItemResource } from '../types'
+import type { TrackListItemResource } from '../../types'
 
 interface Props {
   tracks: TrackListItemResource[]

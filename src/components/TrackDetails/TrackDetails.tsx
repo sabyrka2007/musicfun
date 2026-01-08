@@ -1,4 +1,4 @@
-import type { TrackDetailsResource } from '../types'
+import type { TrackDetailsResource } from '../../types'
 
 interface Props {
   trackId: string | null

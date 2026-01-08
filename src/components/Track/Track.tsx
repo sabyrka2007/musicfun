@@ -1,4 +1,4 @@
-import type { TrackListItemResource } from '../types'
+import type { TrackListItemResource } from '../../types'
 
 interface Props {
   track: TrackListItemResource
