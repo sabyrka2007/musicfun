@@ -1,10 +1,10 @@
 import { ResetButton } from '../ResetButton'
 import { Playlist } from '../Playlist'
 import { TrackDetails } from '../TrackDetails'
-import { useMainContent } from '../../bll/useMainContent'
+import { useTracksSelection } from '../../bll/useTracksSelection'
 
 export const MainContent = () => {
-  const { tracks, selectedTrack, selectedTrackId, setSelectedTrackId, handleResetSelection } = useMainContent()
+  const { tracks, selectedTrack, selectedTrackId, setSelectedTrackId, handleResetSelection } = useTracksSelection()
 
   return (
     <section>
