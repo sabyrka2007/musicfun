@@ -1,0 +1,52 @@
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.state {
+  font-size: 14px;
+  color: #777;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.trackTitle {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.lyrics {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.subtitle {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.text {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.empty {
+  font-size: 14px;
+  color: #999;
+  font-style: italic;
+}

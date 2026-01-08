@@ -1,4 +1,6 @@
+import styles from './Track.module.scss'
 import type { TrackListItemResource } from '../../types'
+import clsx from 'clsx'
 
 interface Props {
   track: TrackListItemResource
@@ -7,16 +9,23 @@ interface Props {
 }
 
 export const Track = ({ track, trackId, setTrackId }: Props) => {
+  const isActive = track.id === trackId
+
   return (
     <li
-      style={{ border: `1px solid ${track.id === trackId ? 'orange' : 'transparent'}` }}
       onClick={() => setTrackId(track.id)}
+      className={clsx(styles.track, isActive && styles.active)}
     >
-      <div>{track.attributes.title}</div>
+      <div className={styles.header}>
+        <span className={styles.title}>{track.attributes.title}</span>
+      </div>
+
       <audio
+        className={styles.audio}
         src={track.attributes.attachments[0].url}
         controls
-      ></audio>
+        onClick={(e) => e.stopPropagation()}
+      />
     </li>
   )
 }

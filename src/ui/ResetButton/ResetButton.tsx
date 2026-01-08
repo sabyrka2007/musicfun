@@ -1,3 +1,5 @@
+import styles from './ResetButton.module.scss'
+
 interface Props {
   onResetSelection: () => void
 }
@@ -7,7 +9,9 @@ export const ResetButton = ({ onResetSelection }: Props) => {
     <button
       type="button"
       onClick={onResetSelection}
-    >Reset selection
+      className={styles.button}
+    >
+      Reset selection
     </button>
   )
 }

@@ -1,3 +1,4 @@
+import styles from './Playlist.module.scss'
 import { Track } from '../Track'
 import type { TrackListItemResource } from '../../types'
 
@@ -9,8 +10,8 @@ interface Props {
 
 export const Playlist = ({ tracks, trackId, setTrackId }: Props) => {
   return (
-    <ul>
-      {tracks?.map((track) => (
+    <ul className={styles.playlist}>
+      {tracks.map((track) => (
         <Track
           key={track.id}
           track={track}
